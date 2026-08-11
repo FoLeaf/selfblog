@@ -217,7 +217,10 @@
         if (resizeTimer != null) {
             clearTimeout(resizeTimer);
         }
-        resizeTimer = setTimeout(fitSidebar, 100);
+        resizeTimer = setTimeout(function () {
+            fitSidebar();
+            updateStickyRelease();
+        }, 100);
     });
     // At load the <details> wrapper was just opened by syncTocOpen(), and
     // its content is laid out asynchronously (the theme's details-content
@@ -232,4 +235,25 @@
         }
     }
     fitWhenReady();
+
+    // The sticky sidebar must stop before the related-posts section: once
+    // that section reaches the pinned TOC's bottom, drop the sticky
+    // positioning so the TOC scrolls away with the article instead of
+    // overlapping the section.
+    var related = document.querySelector('.related-posts');
+    function updateStickyRelease() {
+        if (!wrap || !related) {
+            return;
+        }
+        var pinnedBottom = (header ? header.offsetHeight : 60) + 16 +
+            wrap.offsetHeight;
+        var released = related.getBoundingClientRect().top <= pinnedBottom;
+        wrap.classList.toggle('toc-mobile--released', released);
+        if (!released) {
+            // The sidebar is sticky again, so re-apply the viewport fit.
+            fitSidebar();
+        }
+    }
+    window.addEventListener('scroll', updateStickyRelease, { passive: true });
+    updateStickyRelease();
 })();

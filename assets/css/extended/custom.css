@@ -98,6 +98,16 @@
     display: none;
   }
 
+  .post-single:has(.toc-mobile) > .related-posts {
+    grid-column: 1 / -1;
+  }
+
+  /* Once the related-posts section reaches the pinned sidebar, the JS drops
+     the sticky positioning so the two never overlap. */
+  .post-single:has(.toc-mobile) > .toc-mobile.toc-mobile--released {
+    position: static;
+  }
+
   .post-single:has(.toc-mobile) > .post-content {
     grid-column: 2;
   }
