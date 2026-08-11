@@ -1,1 +1,10 @@
 hugo.exe
+# Generated files and local tooling caches
+.hugo_build.lock
+.hugo-build-check/
+.hugo-cache/
+resources/_gen/
+
+# Local editor state
+.vscode/*.local.json
+.hugo-runtime-message.txt

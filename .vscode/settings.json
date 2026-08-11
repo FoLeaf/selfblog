@@ -1,0 +1,15 @@
+{
+    "files.eol": "\n",
+    "files.encoding": "utf8",
+    "files.trimTrailingWhitespace": true,
+    "[markdown]": {
+        "files.trimTrailingWhitespace": false
+    },
+    "yaml.validate": true,
+    "markdown.validate.enabled": true,
+    "search.exclude": {
+        "**/.hugo-build-check": true,
+        "**/public": true,
+        "**/resources/_gen": true
+    }
+}

@@ -1,0 +1,8 @@
+{
+    "recommendations": [
+        "budparr.language-hugo-vscode",
+        "redhat.vscode-yaml",
+        "DavidAnson.vscode-markdownlint"
+    ],
+    "unwantedRecommendations": []
+}
