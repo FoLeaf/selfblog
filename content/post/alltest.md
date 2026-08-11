@@ -2,6 +2,7 @@
 date = '2025-04-04T12:55:58+08:00'
 draft = false
 title = '全格式测试'
+robotsNoIndex = true
 +++
 # Markdown 全格式测试文档
 

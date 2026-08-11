@@ -41,8 +41,19 @@ params:
   env: production
   description: "19y 的技术博客，记录嵌入式、编程和学习笔记。"
   author: "19y"
+  keywords:
+    - 嵌入式
+    - openvela
+    - NuttX
+    - STM32
+    - 技术博客
+    - 编程
   mainSections:
     - post
+
+  # Personal blog: represent the site as a Person rather than an Organization.
+  schema:
+    publisherType: Person
 
   defaultTheme: auto
   displayFullLangName: true

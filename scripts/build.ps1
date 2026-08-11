@@ -18,6 +18,7 @@ $destinationPath = [System.IO.Path]::GetFullPath((Join-Path $projectRoot $Destin
     --minify `
     --environment production `
     --destination $destinationPath `
+    --cleanDestinationDir `
     @HugoArgs
 
 exit $LASTEXITCODE
