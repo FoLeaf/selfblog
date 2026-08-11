@@ -84,6 +84,9 @@
 }
 
 /* ---- LineSidebar TOC (vanilla port of React Bits' LineSidebar) ---- */
+/* The nav carries both .toc and .line-sidebar, so match the container
+   whether it is the .toc element itself or nested inside one. */
+.toc.line-sidebar,
 .toc .line-sidebar {
   --accent-color: #1f1f1f;
   --text-color: #5f5f5f;
@@ -101,12 +104,14 @@
   justify-content: flex-start;
 }
 
+[data-theme="dark"] .toc.line-sidebar,
 [data-theme="dark"] .toc .line-sidebar {
   --accent-color: #ffffff;
   --text-color: #c4c4c4;
   --marker-color: #6c6c6c;
 }
 
+.toc.line-sidebar--markers,
 .toc .line-sidebar--markers {
   padding-left: calc(var(--marker-length) + var(--marker-gap));
 }
@@ -175,6 +180,7 @@
 }
 
 /* Short static tick centered in the gap between two menu items */
+.toc.line-sidebar--markers .line-sidebar__item:not(:last-child)::after,
 .toc .line-sidebar--markers .line-sidebar__item:not(:last-child)::after {
   content: '';
   position: absolute;
@@ -188,6 +194,7 @@
 }
 
 /* When enabled, the in-between ticks grow with cursor proximity too */
+.toc.line-sidebar--scale-tick .line-sidebar__item:not(:last-child)::after,
 .toc .line-sidebar--scale-tick .line-sidebar__item:not(:last-child)::after {
   transform-origin: left center;
   transform: translateY(-50%) scaleX(calc(0.7 + var(--effect, 0) * 0.6));
