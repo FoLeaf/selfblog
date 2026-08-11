@@ -1,45 +1,37 @@
 {{- $headers := findRE "<h[1-6].*?>(.|\n])+?</h[1-6]>" .Content -}}
 {{- $has_headers := ge (len $headers) 1 -}}
 {{- if $has_headers -}}
-<details class="toc" open>
-    <summary accesskey="c" title="(Alt + C)">
-        <span class="title">{{- i18n "toc" | default "Table of Contents" }}</span>
-    </summary>
-
-    <div class="inner">
-        <nav
-            class="line-sidebar line-sidebar--markers line-sidebar--scale-tick"
-            id="toc-sidebar"
-            aria-label="{{- i18n "toc" | default "Table of Contents" -}}"
-        >
-            <ul
-                class="line-sidebar__list"
-                data-proximity-radius="100"
-                data-falloff="smooth"
+<nav
+    class="toc line-sidebar line-sidebar--markers line-sidebar--scale-tick"
+    id="toc-sidebar"
+    aria-label="{{- i18n "toc" | default "Table of Contents" -}}"
+>
+    <ul
+        class="line-sidebar__list"
+        data-proximity-radius="100"
+        data-falloff="smooth"
+    >
+        {{- range $i, $header := $headers -}}
+        {{- $headerLevel := index (findRE "[1-6]" . 1) 0 -}}
+        {{- $headerLevel := len (seq $headerLevel) -}}
+        {{- $id := index (findRE "(id=\"(.*?)\")" $header 9) 0 -}}
+        {{- $cleanedID := replace (replace $id "id=\"" "") "\"" "" -}}
+        {{- $headerText := $header | plainify -}}
+        <li class="line-sidebar__item" data-level="{{- $headerLevel -}}">
+            <a
+                class="line-sidebar__link"
+                href="#{{- $cleanedID -}}"
+                aria-label="{{- $headerText -}}"
             >
-                {{- range $i, $header := $headers -}}
-                {{- $headerLevel := index (findRE "[1-6]" . 1) 0 -}}
-                {{- $headerLevel := len (seq $headerLevel) -}}
-                {{- $id := index (findRE "(id=\"(.*?)\")" $header 9) 0 -}}
-                {{- $cleanedID := replace (replace $id "id=\"" "") "\"" "" -}}
-                {{- $headerText := $header | plainify -}}
-                <li class="line-sidebar__item" data-level="{{- $headerLevel -}}">
-                    <a
-                        class="line-sidebar__link"
-                        href="#{{- $cleanedID -}}"
-                        aria-label="{{- $headerText -}}"
-                    >
-                        <span class="line-sidebar__marker" aria-hidden="true"></span>
-                        <span class="line-sidebar__label">
-                            <span class="line-sidebar__index">{{- printf "%02d" (add $i 1) -}}</span>
-                            <span class="line-sidebar__text">{{- $headerText -}}</span>
-                        </span>
-                    </a>
-                </li>
-                {{- end -}}
-            </ul>
-        </nav>
-        <script src="{{ "js/toc-sidebar.js" | relURL }}" defer></script>
-    </div>
-</details>
+                <span class="line-sidebar__marker" aria-hidden="true"></span>
+                <span class="line-sidebar__label">
+                    <span class="line-sidebar__index">{{- printf "%02d" (add $i 1) -}}</span>
+                    <span class="line-sidebar__text">{{- $headerText -}}</span>
+                </span>
+            </a>
+        </li>
+        {{- end -}}
+    </ul>
+</nav>
+<script src="{{ "js/toc-sidebar.js" | relURL }}" defer></script>
 {{- end -}}

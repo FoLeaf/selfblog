@@ -48,8 +48,9 @@
   line-height: 1.45;
 }
 
-/* TOC sidebar: on wide screens show the table of contents as a sticky card
-   on the left of the article; on narrow screens it stays in flow on top. */
+/* TOC sidebar: on wide screens show the table of contents as a sticky
+   sidebar on the left of the article; on narrow screens it stays in flow
+   on top. */
 @media (min-width: 1080px) {
   .main:has(.post-single > .toc) {
     max-width: 1120px;
@@ -192,9 +193,9 @@
   transform: translateY(-50%) scaleX(calc(0.7 + var(--effect, 0) * 0.6));
 }
 
-/* Keep the sidebar card from being too roomy in the 280px left column */
-@media (min-width: 1080px) {
-  .post-single:has(.toc) > .toc .inner {
-    margin: 0 1.5rem;
-  }
+/* Bare sidebar: no card, no background (also defeats the theme's noscript
+   `.toc { background: var(--entry); }` rule). */
+nav.toc {
+  background: transparent;
+  border: 0;
 }
