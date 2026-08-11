@@ -14,6 +14,14 @@ links:
     description: TypeScript is a typed superset of JavaScript that compiles to plain JavaScript.
     website: https://www.typescriptlang.org
     image: ts-logo-128.jpg
+  - title: ageha
+    description: 好友的个人网站
+    website: https://ageha.cn/
+    image: ageha-icon-256.png
+  - title: tak1na
+    description: 好友的个人网站
+    website: https://tak1na.cn/
+    image: tak1na-icon.webp
 ---
 
 常用链接。

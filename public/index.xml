@@ -186,19 +186,4 @@ Flash 作为启动 stub 的完整链路。重点不是“执行哪条命令”�
 &lt;li&gt;&lt;input disabled="" type="checkbox"&gt; 掌握高级表格技巧&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id="3-代码与语法高亮"&gt;3. 代码与语法高亮&lt;/h2&gt;
-&lt;p&gt;行内代码：&lt;code&gt;print(&amp;quot;Hello Markdown&amp;quot;)&lt;/code&gt;&lt;/p&gt;</description></item><item><title>Test</title><link>https://www.19y.cc/p/test/</link><pubDate>Fri, 04 Apr 2025 11:54:34 +0800</pubDate><guid>https://www.19y.cc/p/test/</guid><description/></item><item><title>Links</title><link>https://www.19y.cc/links/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://www.19y.cc/links/</guid><description>&lt;p&gt;常用链接。&lt;/p&gt;</description></item><item><title>关于</title><link>https://www.19y.cc/%E5%85%B3%E4%BA%8E/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://www.19y.cc/%E5%85%B3%E4%BA%8E/</guid><description>&lt;p&gt;你好，我是 &lt;strong&gt;19y&lt;/strong&gt;。这个博客记录我在嵌入式、编程与学习过程中的笔记和踩坑经历，也会整理一些竞赛与开源项目的实践心得。&lt;/p&gt;
-&lt;h2 id="友情链接"&gt;友情链接&lt;/h2&gt;
-&lt;div class="container friends"&gt;
-&lt;a class="friend-link" href="https://ageha.cn/" target="_blank" rel="noopener noreferrer"&gt;
-&lt;div class="card_box ageha"&gt;
-&lt;span&gt;&lt;/span&gt;
-&lt;img class="friend-icon" src="ageha-icon-256.png" alt="ageha"&gt;
-&lt;/div&gt;
-&lt;/a&gt;
-&lt;a class="friend-link" href="https://tak1na.cn/" target="_blank" rel="noopener noreferrer"&gt;
-&lt;div class="card_box tak1na"&gt;
-&lt;span&gt;&lt;/span&gt;
-&lt;img class="friend-icon" src="tak1na-icon.webp" alt="tak1na"&gt;
-&lt;/div&gt;
-&lt;/a&gt;
-&lt;/div&gt;</description></item></channel></rss>
+&lt;p&gt;行内代码：&lt;code&gt;print(&amp;quot;Hello Markdown&amp;quot;)&lt;/code&gt;&lt;/p&gt;</description></item><item><title>Test</title><link>https://www.19y.cc/p/test/</link><pubDate>Fri, 04 Apr 2025 11:54:34 +0800</pubDate><guid>https://www.19y.cc/p/test/</guid><description/></item><item><title>Links</title><link>https://www.19y.cc/links/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://www.19y.cc/links/</guid><description>&lt;p&gt;常用链接。&lt;/p&gt;</description></item><item><title>关于</title><link>https://www.19y.cc/%E5%85%B3%E4%BA%8E/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://www.19y.cc/%E5%85%B3%E4%BA%8E/</guid><description>&lt;p&gt;你好，我是 &lt;strong&gt;19y&lt;/strong&gt;。这个博客记录我在嵌入式、编程与学习过程中的笔记和踩坑经历，也会整理一些竞赛与开源项目的实践心得。&lt;/p&gt;</description></item></channel></rss>
