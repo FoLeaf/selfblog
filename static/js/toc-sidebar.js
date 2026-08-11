@@ -37,6 +37,8 @@
     var activeIndex = 0;
     var rafId = null;
     var last = 0;
+    var pointerTimer = null;
+    var POINTER_DEBOUNCE_MS = 40;
 
     var headings = items.map(function (el) {
         var link = el.querySelector('a.line-sidebar__link');
@@ -93,9 +95,9 @@
         startLoop();
     }
 
-    function handlePointerMove(e) {
+    function computeTargets(clientY) {
         var rect = list.getBoundingClientRect();
-        var pointerY = e.clientY - rect.top;
+        var pointerY = clientY - rect.top;
         for (var i = 0; i < items.length; i++) {
             var el = items[i];
             var center = el.offsetTop + el.offsetHeight / 2;
@@ -107,8 +109,25 @@
         startLoop();
     }
 
+    // Debounce pointer updates: while the cursor sweeps across the list the
+    // targets only settle after a short pause, so fast passes no longer make
+    // the labels and markers jitter.
+    function handlePointerMove(e) {
+        if (pointerTimer != null) {
+            clearTimeout(pointerTimer);
+        }
+        pointerTimer = setTimeout(function () {
+            pointerTimer = null;
+            computeTargets(e.clientY);
+        }, POINTER_DEBOUNCE_MS);
+    }
+
     list.addEventListener('pointermove', handlePointerMove);
     list.addEventListener('pointerleave', function () {
+        if (pointerTimer != null) {
+            clearTimeout(pointerTimer);
+            pointerTimer = null;
+        }
         targets = targets.map(function () { return 0; });
         startLoop();
     });
@@ -137,4 +156,42 @@
 
     window.addEventListener('scroll', updateActive, { passive: true });
     updateActive();
+
+    // Auto-fit: when the list is taller than the sticky viewport slot, scale
+    // font and spacing down so no scrollbar is needed. Only applies when the
+    // sidebar is actually sticky (wide screens).
+    function fitSidebar() {
+        var position = getComputedStyle(sidebar).position;
+        if (position !== 'sticky') {
+            sidebar.style.setProperty('--toc-scale', '1');
+            return;
+        }
+        var headerEl = document.querySelector('header.header') ||
+            document.querySelector('.header');
+        var headerOffset = (headerEl ? headerEl.offsetHeight : 60) + 32;
+        var available = window.innerHeight - headerOffset;
+        // Measure from the natural (unscaled) size first.
+        sidebar.style.setProperty('--toc-scale', '1');
+        var height = list.offsetHeight;
+        if (height <= available || available <= 0) {
+            return;
+        }
+        var scale = Math.max(available / height, 0.5);
+        sidebar.style.setProperty('--toc-scale', scale.toFixed(3));
+        // One more pass to correct the non-linear padding contribution.
+        var fitted = list.offsetHeight;
+        if (fitted > available) {
+            var scale2 = Math.max(scale * (available / fitted), 0.5);
+            sidebar.style.setProperty('--toc-scale', scale2.toFixed(3));
+        }
+    }
+
+    var resizeTimer = null;
+    window.addEventListener('resize', function () {
+        if (resizeTimer != null) {
+            clearTimeout(resizeTimer);
+        }
+        resizeTimer = setTimeout(fitSidebar, 100);
+    });
+    fitSidebar();
 })();

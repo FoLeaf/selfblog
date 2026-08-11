@@ -21,9 +21,6 @@ buildExpired: false
 mainsections:
   - post
 
-pagination:
-  pagerSize: 3
-
 # Keep the existing public URLs stable during the theme migration.
 permalinks:
   post: /p/:slug/
