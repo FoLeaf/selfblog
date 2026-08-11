@@ -49,7 +49,7 @@ params:
 
   defaultTheme: auto
   displayFullLangName: true
-  ShowShareButtons: true
+  ShowShareButtons: false
   ShowReadingTime: true
   ShowPostNavLinks: true
   ShowBreadCrumbs: true

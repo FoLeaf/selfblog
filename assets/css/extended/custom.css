@@ -47,3 +47,37 @@
   font-size: 0.9rem;
   line-height: 1.45;
 }
+
+/* TOC sidebar: on wide screens show the table of contents as a sticky card
+   on the left of the article; on narrow screens it stays in flow on top. */
+@media (min-width: 1080px) {
+  .main:has(.post-single > .toc) {
+    max-width: 1120px;
+  }
+
+  .post-single:has(.toc) {
+    display: grid;
+    grid-template-columns: 280px minmax(0, 1fr);
+    column-gap: 48px;
+    align-items: start;
+  }
+
+  .post-single:has(.toc) > .post-header,
+  .post-single:has(.toc) > .entry-cover,
+  .post-single:has(.toc) > .post-footer {
+    grid-column: 1 / -1;
+  }
+
+  .post-single:has(.toc) > .toc {
+    grid-column: 1;
+    position: sticky;
+    top: calc(var(--header-height) + 16px);
+    max-height: calc(100vh - var(--header-height) - 32px);
+    overflow-y: auto;
+    margin-bottom: 0;
+  }
+
+  .post-single:has(.toc) > .post-content {
+    grid-column: 2;
+  }
+}
