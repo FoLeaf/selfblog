@@ -69,6 +69,10 @@ params:
 
   assets:
     disableHLJS: true
+    # Vercel 部署的 CSS/JS 与本地构建的行尾符不一致（git autocrlf），
+    # 导致 SRI integrity 校验失败、浏览器拒绝加载样式。
+    # 关闭指纹哈希后不再输出 integrity/crossorigin，避免此问题。
+    disableFingerprinting: true
 
   # Keep the existing math/front-matter switches available for future posts.
   math: false
