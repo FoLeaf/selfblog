@@ -49,28 +49,34 @@
 }
 
 /* TOC sidebar: on wide screens show the table of contents as a sticky
-   sidebar on the left of the article; on narrow screens it stays in flow
-   on top. */
+   sidebar on the left of the article; on narrow screens collapse it
+   behind a tap-to-expand toggle (see the max-width block below). */
 @media (min-width: 1080px) {
-  .main:has(.post-single > .toc) {
+  .main:has(.post-single > .toc-mobile) {
     max-width: 1120px;
   }
 
-  .post-single:has(.toc) {
+  .post-single:has(.toc-mobile) {
     display: grid;
     grid-template-columns: 280px minmax(0, 1fr);
     column-gap: 48px;
     align-items: start;
   }
 
-  .post-single:has(.toc) > .post-header,
-  .post-single:has(.toc) > .entry-cover,
-  .post-single:has(.toc) > .post-footer {
+  .post-single:has(.toc-mobile) > .post-header,
+  .post-single:has(.toc-mobile) > .entry-cover,
+  .post-single:has(.toc-mobile) > .post-footer {
     grid-column: 1 / -1;
   }
 
-  .post-single:has(.toc) > .toc {
+  /* The <details> wrapper owns the grid cell; the nav inside is sticky. */
+  .post-single:has(.toc-mobile) > .toc-mobile {
     grid-column: 1;
+    display: block;
+    margin: 0;
+  }
+
+  .post-single:has(.toc-mobile) > .toc-mobile > .toc {
     position: sticky;
     top: calc(var(--header-height) + 16px);
     max-height: calc(100vh - var(--header-height) - 32px);
@@ -81,11 +87,15 @@
     scrollbar-width: none;
   }
 
-  .post-single:has(.toc) > .toc::-webkit-scrollbar {
+  .post-single:has(.toc-mobile) > .toc-mobile > .toc::-webkit-scrollbar {
     display: none;
   }
 
-  .post-single:has(.toc) > .post-content {
+  .post-single:has(.toc-mobile) > .toc-mobile > .toc-mobile__toggle {
+    display: none;
+  }
+
+  .post-single:has(.toc-mobile) > .post-content {
     grid-column: 2;
   }
 }
@@ -288,4 +298,63 @@ nav.toc {
   color: var(--secondary);
   font-size: 0.85em;
   flex: 0 0 auto;
+}
+
+/* Mobile TOC (placed last so it overrides the LineSidebar base variables):
+   the TOC lives in a collapsed <details> card so the first viewport stays
+   on the article; opening it compacts the list and caps its height. */
+@media (max-width: 1079.98px) {
+  .toc-mobile {
+    margin: 0 0 1.5rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--entry);
+  }
+
+  .toc-mobile__toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.7rem 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    user-select: none;
+    list-style: none;
+  }
+
+  .toc-mobile__toggle::-webkit-details-marker {
+    display: none;
+  }
+
+  .toc-mobile__toggle::after {
+    content: '';
+    width: 8px;
+    height: 8px;
+    margin-top: -3px;
+    border-right: 2px solid var(--secondary);
+    border-bottom: 2px solid var(--secondary);
+    transform: rotate(45deg);
+    transition: transform 0.2s ease;
+  }
+
+  .toc-mobile[open] .toc-mobile__toggle::after {
+    margin-top: 3px;
+    transform: rotate(225deg);
+  }
+
+  .toc-mobile > .toc {
+    padding: 0 1rem 0.9rem;
+    --item-gap: 10px;
+    --font-size: 0.95rem;
+    --marker-length: 34px;
+    --max-shift: 0px;
+  }
+
+  .toc-mobile > .toc .line-sidebar__list {
+    max-height: 58vh;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding-top: 0;
+  }
 }

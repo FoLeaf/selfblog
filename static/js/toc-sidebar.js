@@ -16,6 +16,25 @@
     );
     if (!items.length) return;
 
+    // Mobile-first toggle: the TOC lives in a <details> card that is
+    // collapsed on narrow screens and forced open on the desktop sidebar.
+    var wrap = sidebar.closest('details.toc-mobile');
+    var desktopMQ = window.matchMedia('(min-width: 1080px)');
+    function syncTocOpen() {
+        if (!wrap) return;
+        if (desktopMQ.matches) {
+            wrap.setAttribute('open', '');
+        } else {
+            wrap.removeAttribute('open');
+        }
+    }
+    if (desktopMQ.addEventListener) {
+        desktopMQ.addEventListener('change', syncTocOpen);
+    } else {
+        desktopMQ.addListener(syncTocOpen);
+    }
+    syncTocOpen();
+
     var FALLOFF_CURVES = {
         linear: function (p) { return p; },
         smooth: function (p) { return p * p * (3 - 2 * p); },
@@ -135,6 +154,11 @@
     items.forEach(function (el, i) {
         el.addEventListener('click', function () {
             setActive(i);
+            // After jumping to a heading, collapse the TOC on mobile so it
+            // doesn't stay in the way of the article.
+            if (wrap && !desktopMQ.matches) {
+                wrap.removeAttribute('open');
+            }
         });
     });
 
