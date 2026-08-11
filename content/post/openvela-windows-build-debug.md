@@ -5,8 +5,6 @@ slug = 'openvela-windows-build-debug'
 title = 'Windows 下 openvela 的编译、烧录与调试（STM32H750B-DK）'
 +++
 
-# Windows VS Code 编译、烧录与调试 STM32H750B-DK
-
 > **写代码（补全 / 跳转）请先看**
 > [Windows VS Code 写代码环境](/p/openvela-windows-vscode-setup/)。
 > 本文侧重编译、QSPI 烧录与 Cortex-Debug；编辑窗口必须是 Remote - WSL。

@@ -5,8 +5,6 @@ slug = 'openvela-windows-vscode-setup'
 title = 'Windows VS Code 写代码环境：openvela 的补全与跳转'
 +++
 
-# Windows VS Code 写代码环境（补全 / 跳转）
-
 本文只覆盖 **编辑 + 自动补全 + 函数跳转**。编译 / 烧录 / 断点调试的完整硬件链路见
 [Windows 下 openvela 的编译、烧录与调试](/p/openvela-windows-build-debug/)；任务入口已在
 `.vscode/tasks.json` / `launch.json` 预留为 scaffold。

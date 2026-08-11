@@ -5,8 +5,6 @@ slug = 'openvela-first-led'
 title = '从空白工程到点亮 STM32H750B-DK 第一颗 LED'
 +++
 
-# 从空白工程到点亮 STM32H750B-DK 第一颗 LED
-
 本文记录我们这一路从 openvela 竞赛模板走到 STM32H750B-DK 点亮第一颗 LED 的完整过程。
 
 它不是只告诉你“改哪一行”，而是帮你建立一套迁移思维：你已经有 STM32HAL、FreeRTOS、LwIP、FatFs、Modbus 经验，那么学习 openvela/NuttX 时，最重要的是把已有经验映射到 NuttX 的概念上。

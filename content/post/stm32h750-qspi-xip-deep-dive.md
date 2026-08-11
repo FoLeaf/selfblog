@@ -5,8 +5,6 @@ slug = 'stm32h750-qspi-xip-deep-dive'
 title = 'STM32H750B-DK 的 QSPI-XIP 构建、烧录与启动机制'
 +++
 
-# STM32H750B-DK 的 QSPI-XIP 构建、烧录与启动机制
-
 本文解释本项目在 STM32H750B-DK 上使用外部 QSPI 作为主镜像、片内
 Flash 作为启动 stub 的完整链路。重点不是“执行哪条命令”，而是说明：
 
