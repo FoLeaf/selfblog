@@ -1,0 +1,32 @@
+{{- define "main" -}}
+<article class="post-single">
+  <header class="post-header">
+    {{ partial "breadcrumbs.html" . }}
+    <h1 class="post-title entry-hint-parent">{{ .Title }}</h1>
+  </header>
+
+  {{- if .Content }}
+  <div class="post-content md-content">
+    {{ .Content }}
+  </div>
+  {{- end }}
+
+  <div class="links-grid">
+    {{- range .Params.links }}
+    {{- $link := . }}
+    {{- $localImage := $.Resources.GetMatch $link.image }}
+    <a class="link-card" href="{{ $link.website | safeURL }}" target="_blank" rel="noopener noreferrer">
+      {{- if $localImage }}
+      <img src="{{ $localImage.RelPermalink }}" alt="{{ $link.title }}" loading="lazy">
+      {{- else if $link.image }}
+      <img src="{{ $link.image | safeURL }}" alt="{{ $link.title }}" loading="lazy">
+      {{- end }}
+      <span class="link-card__body">
+        <strong>{{ $link.title }}</strong>
+        <span>{{ $link.description }}</span>
+      </span>
+    </a>
+    {{- end }}
+  </div>
+</article>
+{{- end -}}
