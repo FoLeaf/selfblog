@@ -3,6 +3,7 @@ date = '2026-08-11T10:00:00+08:00'
 draft = false
 slug = 'velaguard-architecture-decisions'
 title = 'VelaGuard 架构决策记录：边缘网关的五条可靠性设计原则'
+tags = ['velaguard', '架构设计', '嵌入式']
 +++
 
 VelaGuard 是我们在 openvela（NuttX）上为 STM32H750B-DK 开发的一款工业边缘网关：它通过 Modbus 采集现场数据，在本地完成规则判断与告警，再经由 MQTT 把关键信息上送云端，并借助 AI 助手完成诊断与配置建议。

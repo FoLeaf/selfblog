@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>QSPI on 19y的技术栈</title><link>https://www.19y.cc/tags/qspi/</link><description>Recent content in QSPI on 19y的技术栈</description><generator>Hugo</generator><language>zh-cn</language><copyright>19y</copyright><lastBuildDate>Tue, 11 Aug 2026 11:00:00 +0800</lastBuildDate><atom:link href="https://www.19y.cc/tags/qspi/index.xml" rel="self" type="application/rss+xml"/><item><title>STM32H750B-DK 的 QSPI-XIP 构建、烧录与启动机制</title><link>https://www.19y.cc/p/stm32h750-qspi-xip-deep-dive/</link><pubDate>Tue, 11 Aug 2026 11:00:00 +0800</pubDate><guid>https://www.19y.cc/p/stm32h750-qspi-xip-deep-dive/</guid><description>&lt;p&gt;本文解释本项目在 STM32H750B-DK 上使用外部 QSPI 作为主镜像、片内
+Flash 作为启动 stub 的完整链路。重点不是“执行哪条命令”，而是说明：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;地址为什么是 0x08000000 和 0x90000000 两套空间；&lt;/li&gt;
+&lt;li&gt;Kconfig 如何影响链接脚本，链接脚本如何影响 ELF、HEX 和 BIN；&lt;/li&gt;
+&lt;li&gt;为什么板上需要两个持久化镜像；&lt;/li&gt;
+&lt;li&gt;STM32CubeProgrammer 的 External Loader 到底是什么；&lt;/li&gt;
+&lt;li&gt;boot stub 如何把 QSPI 变成 CPU 可以直接取指的 XIP 地址；&lt;/li&gt;
+&lt;li&gt;烧录成功但不能启动时，应该从哪里开始定位。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;本文对应我们在 openvela 项目中的实际实现，主要参考资料包括项目仓库里的
+&lt;code&gt;windows_build_openvela.ps1&lt;/code&gt;、&lt;code&gt;windows_flash_cube.ps1&lt;/code&gt;、QSPI 补丁
+&lt;code&gt;openvela-qspi-boot-stm32h750b-dk.patch&lt;/code&gt;、boot stub 源码
+&lt;code&gt;stm32h750b_qspi_bootstub.c&lt;/code&gt; 与链接脚本 &lt;code&gt;stm32h750b_qspi_bootstub.ld&lt;/code&gt;，
+以及配套的 &lt;a href="https://www.19y.cc/p/openvela-windows-build-debug/"&gt;Windows 编译/烧录/调试指南&lt;/a&gt;。&lt;/p&gt;</description></item></channel></rss>

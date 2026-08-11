@@ -241,3 +241,51 @@ nav.toc {
   content-visibility: auto;
   contain-intrinsic-size: auto 180px;
 }
+
+/* ---- Related posts (internal linking for indexation) ---- */
+.related-posts {
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.related-posts__title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--secondary);
+  margin-bottom: 0.8rem;
+}
+
+.related-posts__list {
+  list-style: none;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.related-posts__list a {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 0.55rem 0.75rem;
+  border-radius: var(--radius);
+  color: var(--primary);
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+.related-posts__list a:hover {
+  background: var(--entry);
+}
+
+.related-posts__link-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.related-posts__date {
+  color: var(--secondary);
+  font-size: 0.85em;
+  flex: 0 0 auto;
+}

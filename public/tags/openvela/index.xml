@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Openvela on 19y的技术栈</title><link>https://www.19y.cc/tags/openvela/</link><description>Recent content in Openvela on 19y的技术栈</description><generator>Hugo</generator><language>zh-cn</language><copyright>19y</copyright><lastBuildDate>Tue, 11 Aug 2026 12:40:00 +0800</lastBuildDate><atom:link href="https://www.19y.cc/tags/openvela/index.xml" rel="self" type="application/rss+xml"/><item><title>Windows VS Code 写代码环境：openvela 的补全与跳转</title><link>https://www.19y.cc/p/openvela-windows-vscode-setup/</link><pubDate>Tue, 11 Aug 2026 12:40:00 +0800</pubDate><guid>https://www.19y.cc/p/openvela-windows-vscode-setup/</guid><description>&lt;p&gt;本文只覆盖 &lt;strong&gt;编辑 + 自动补全 + 函数跳转&lt;/strong&gt;。编译 / 烧录 / 断点调试的完整硬件链路见
+&lt;a href="https://www.19y.cc/p/openvela-windows-build-debug/"&gt;Windows 下 openvela 的编译、烧录与调试&lt;/a&gt;；任务入口已在
+&lt;code&gt;.vscode/tasks.json&lt;/code&gt; / &lt;code&gt;launch.json&lt;/code&gt; 预留为 scaffold。&lt;/p&gt;
+&lt;h2 id="正确架构必须遵守"&gt;正确架构（必须遵守）&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;span class="lnt"&gt;12
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-text" data-lang="text"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;┌──────────────────────────────────────────────────────────────┐
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ VS Code Remote - WSL（唯一推荐的写代码窗口） │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ 编辑 / 补全 / 跳转 → WSL 内 ms-vscode.cpptools │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ + Linux arm-none-eabi-gcc │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ + NuttX/openvela 真实头文件 │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ 编译（后续） → 仍在 WSL 跑 openvela 工具链 │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ 烧录（后续） → Windows CubeProgrammer + ST-LINK │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ 调试（后续） → Windows OpenOCD + Cortex-Debug │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;│ request: attach, loadFiles: [] │
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;└──────────────────────────────────────────────────────────────┘
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;职责&lt;/th&gt;
+&lt;th&gt;跑在哪&lt;/th&gt;
+&lt;th&gt;为什么&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;源码编辑、补全、跳转&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;WSL&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;NuttX 大量 Linux 绝对路径符号链接；Windows 本地 C/C++ 扩展会跟丢，并混用 Windows newlib 与 NuttX libc&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;固件编译&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;WSL&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;openvela 官方工具链与 &lt;code&gt;build.sh&lt;/code&gt; 是 Linux 路径&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;QSPI 烧录&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;Windows&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;STM32H750 超 128 KiB 片内 Flash 时，用 CubeProgrammer External Loader 写外部 QSPI；OpenOCD 不负责下载&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;断点调试&lt;/td&gt;
+&lt;td&gt;&lt;strong&gt;Windows OpenOCD&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;ST-LINK 由 Windows 访问；GDB 只 attach 符号，不再 load flash&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;不要&lt;/strong&gt;把下面的 UNC 路径当普通 Windows 文件夹长期写代码：&lt;/p&gt;</description></item><item><title>Windows 下 openvela 的编译、烧录与调试（STM32H750B-DK）</title><link>https://www.19y.cc/p/openvela-windows-build-debug/</link><pubDate>Tue, 11 Aug 2026 12:30:00 +0800</pubDate><guid>https://www.19y.cc/p/openvela-windows-build-debug/</guid><description>&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;写代码（补全 / 跳转）请先看&lt;/strong&gt;
+&lt;a href="https://www.19y.cc/p/openvela-windows-vscode-setup/"&gt;Windows VS Code 写代码环境&lt;/a&gt;。
+本文侧重编译、QSPI 烧录与 Cortex-Debug；编辑窗口必须是 Remote - WSL。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id="方案边界"&gt;方案边界&lt;/h2&gt;
+&lt;p&gt;STM32H750XBH6 只有 128 KiB 片内 Flash。超过该容量的 openvela 镜像采用：&lt;/p&gt;</description></item><item><title>从空白工程到点亮 STM32H750B-DK 第一颗 LED</title><link>https://www.19y.cc/p/openvela-first-led/</link><pubDate>Tue, 11 Aug 2026 12:00:00 +0800</pubDate><guid>https://www.19y.cc/p/openvela-first-led/</guid><description>&lt;p&gt;本文记录我们这一路从 openvela 竞赛模板走到 STM32H750B-DK 点亮第一颗 LED 的完整过程。&lt;/p&gt;
+&lt;p&gt;它不是只告诉你“改哪一行”，而是帮你建立一套迁移思维：你已经有 STM32HAL、FreeRTOS、LwIP、FatFs、Modbus 经验，那么学习 openvela/NuttX 时，最重要的是把已有经验映射到 NuttX 的概念上。&lt;/p&gt;</description></item></channel></rss>

@@ -3,6 +3,7 @@ date = '2026-08-11T12:00:00+08:00'
 draft = false
 slug = 'openvela-first-led'
 title = '从空白工程到点亮 STM32H750B-DK 第一颗 LED'
+tags = ['openvela', 'NuttX', 'LED', '嵌入式']
 +++
 
 本文记录我们这一路从 openvela 竞赛模板走到 STM32H750B-DK 点亮第一颗 LED 的完整过程。

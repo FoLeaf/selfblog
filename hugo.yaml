@@ -41,6 +41,18 @@ params:
   env: production
   description: "19y 的技术博客，记录嵌入式、编程和学习笔记。"
   author: "19y"
+
+  # 搜索引擎站点验证：在对应站长平台完成验证后，把 token 填入下面的空值。
+  # Google Search Console / Bing Webmaster 由 PaperMod head 模板渲染；
+  # 百度验证标签由 layouts/partials/extend_head.html 渲染。
+  analytics:
+    google:
+      SiteVerificationTag: ""
+    bing:
+      SiteVerificationTag: ""
+    baidu:
+      SiteVerificationTag: ""
+
   keywords:
     - 嵌入式
     - openvela
@@ -92,13 +104,18 @@ params:
 
 related:
   includeNewer: true
-  threshold: 60
-  toLower: false
+  threshold: 40
+  toLower: true
   indices:
-    - name: tags
+    - name: keywords
       weight: 100
+    - name: date
+      pattern: "2006"
+      weight: 10
+    - name: tags
+      weight: 80
     - name: categories
-      weight: 200
+      weight: 80
 
 markup:
   goldmark:

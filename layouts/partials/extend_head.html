@@ -1,0 +1,5 @@
+{{- /* 百度站长平台验证标签：配置 site.Params.analytics.baidu.SiteVerificationTag 后渲染。
+     留空时不输出任何内容。 */ -}}
+{{- if site.Params.analytics.baidu.SiteVerificationTag }}
+<meta name="baidu-site-verification" content="{{ site.Params.analytics.baidu.SiteVerificationTag }}">
+{{- end }}

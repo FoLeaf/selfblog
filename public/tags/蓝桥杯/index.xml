@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>蓝桥杯 on 19y的技术栈</title><link>https://www.19y.cc/tags/%E8%93%9D%E6%A1%A5%E6%9D%AF/</link><description>Recent content in 蓝桥杯 on 19y的技术栈</description><generator>Hugo</generator><language>zh-cn</language><copyright>19y</copyright><lastBuildDate>Fri, 04 Apr 2025 14:56:49 +0800</lastBuildDate><atom:link href="https://www.19y.cc/tags/%E8%93%9D%E6%A1%A5%E6%9D%AF/index.xml" rel="self" type="application/rss+xml"/><item><title>蓝桥杯嵌入式选择题部分错题集</title><link>https://www.19y.cc/p/blue-bridge-cup-choose/</link><pubDate>Fri, 04 Apr 2025 14:56:49 +0800</pubDate><guid>https://www.19y.cc/p/blue-bridge-cup-choose/</guid><description>&lt;p&gt;&lt;img alt="蓝桥杯嵌入式选择题错题集截图 1" loading="lazy" src="Pasted%20image%2020250217104715.png"&gt;
+&lt;img alt="蓝桥杯嵌入式选择题错题集截图 2" loading="lazy" src="Pasted%20image%2020250217104803.png"&gt;
+&lt;img alt="蓝桥杯嵌入式选择题错题集截图 3" loading="lazy" src="Pasted%20image%2020250217115425.png"&gt;
+&lt;img alt="蓝桥杯嵌入式选择题错题集截图 4" loading="lazy" src="Pasted%20image%2020250217151824.png"&gt;
+&lt;img alt="蓝桥杯嵌入式选择题错题集截图 5" loading="lazy" src="Pasted%20image%2020250217152223.png"&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;[!NOTE]&lt;/p&gt;
+&lt;h4 id="关键字"&gt;&lt;strong&gt;关键字 &lt;code&gt;inline&lt;/code&gt; 的作用&lt;/strong&gt;&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;inline&lt;/code&gt; 是 C/C++ 中的关键字，用于建议编译器将函数&lt;strong&gt;内联展开&lt;/strong&gt;（即在调用处直接插入函数代码，而非生成函数调用指令）。它的主要影响包括：&lt;/p&gt;</description></item></channel></rss>

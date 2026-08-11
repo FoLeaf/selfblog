@@ -3,6 +3,7 @@ date = '2026-08-11T12:30:00+08:00'
 draft = false
 slug = 'openvela-windows-build-debug'
 title = 'Windows 下 openvela 的编译、烧录与调试（STM32H750B-DK）'
+tags = ['openvela', 'NuttX', 'Windows', '调试', '嵌入式']
 +++
 
 > **写代码（补全 / 跳转）请先看**

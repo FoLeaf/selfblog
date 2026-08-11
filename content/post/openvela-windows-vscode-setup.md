@@ -3,6 +3,7 @@ date = '2026-08-11T12:40:00+08:00'
 draft = false
 slug = 'openvela-windows-vscode-setup'
 title = 'Windows VS Code 写代码环境：openvela 的补全与跳转'
+tags = ['openvela', 'NuttX', 'VS Code', 'WSL', '嵌入式']
 +++
 
 本文只覆盖 **编辑 + 自动补全 + 函数跳转**。编译 / 烧录 / 断点调试的完整硬件链路见

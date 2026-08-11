@@ -3,6 +3,7 @@ date = '2026-08-11T11:00:00+08:00'
 draft = false
 slug = 'stm32h750-qspi-xip-deep-dive'
 title = 'STM32H750B-DK 的 QSPI-XIP 构建、烧录与启动机制'
+tags = ['STM32', 'QSPI', 'XIP', '嵌入式']
 +++
 
 本文解释本项目在 STM32H750B-DK 上使用外部 QSPI 作为主镜像、片内

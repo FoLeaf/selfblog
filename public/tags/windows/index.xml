@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Windows on 19y的技术栈</title><link>https://www.19y.cc/tags/windows/</link><description>Recent content in Windows on 19y的技术栈</description><generator>Hugo</generator><language>zh-cn</language><copyright>19y</copyright><lastBuildDate>Tue, 11 Aug 2026 12:30:00 +0800</lastBuildDate><atom:link href="https://www.19y.cc/tags/windows/index.xml" rel="self" type="application/rss+xml"/><item><title>Windows 下 openvela 的编译、烧录与调试（STM32H750B-DK）</title><link>https://www.19y.cc/p/openvela-windows-build-debug/</link><pubDate>Tue, 11 Aug 2026 12:30:00 +0800</pubDate><guid>https://www.19y.cc/p/openvela-windows-build-debug/</guid><description>&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;写代码（补全 / 跳转）请先看&lt;/strong&gt;
+&lt;a href="https://www.19y.cc/p/openvela-windows-vscode-setup/"&gt;Windows VS Code 写代码环境&lt;/a&gt;。
+本文侧重编译、QSPI 烧录与 Cortex-Debug；编辑窗口必须是 Remote - WSL。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id="方案边界"&gt;方案边界&lt;/h2&gt;
+&lt;p&gt;STM32H750XBH6 只有 128 KiB 片内 Flash。超过该容量的 openvela 镜像采用：&lt;/p&gt;</description></item></channel></rss>
