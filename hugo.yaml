@@ -73,6 +73,11 @@ params:
     # 导致 SRI integrity 校验失败、浏览器拒绝加载样式。
     # 关闭指纹哈希后不再输出 integrity/crossorigin，避免此问题。
     disableFingerprinting: true
+    favicon: favicon.svg
+    favicon16x16: favicon-16x16.png
+    favicon32x32: favicon-32x32.png
+    apple_touch_icon: apple-touch-icon.png
+    safari_pinned_tab: favicon.svg
 
   # Keep the existing math/front-matter switches available for future posts.
   math: false

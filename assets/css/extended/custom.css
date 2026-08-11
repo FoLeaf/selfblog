@@ -82,14 +82,6 @@
   }
 }
 
-/* TOC card header icon */
-.toc summary .toc-icon {
-  width: 1.15em;
-  height: 1.15em;
-  vertical-align: -0.2em;
-  display: inline-block;
-}
-
 /* Friend link cards (About page) — adapted from Uiverse.io by mrhyddenn */
 .friends {
   display: flex;
