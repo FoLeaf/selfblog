@@ -185,7 +185,9 @@
     // font and spacing down so no scrollbar is needed. Only applies when the
     // sidebar is actually sticky (wide screens).
     function fitSidebar() {
-        var position = getComputedStyle(sidebar).position;
+        // The sticky element is the <details> wrapper (the grid item), not
+        // the nav inside it: Chromium clips sticky descendants of <details>.
+        var position = getComputedStyle(wrap || sidebar).position;
         if (position !== 'sticky') {
             sidebar.style.setProperty('--toc-scale', '1');
             return;
@@ -217,5 +219,17 @@
         }
         resizeTimer = setTimeout(fitSidebar, 100);
     });
-    fitSidebar();
+    // At load the <details> wrapper was just opened by syncTocOpen(), and
+    // its content is laid out asynchronously (the theme's details-content
+    // transition), so the list can measure 0 on the first frame. Retry each
+    // frame until the list is measurable, then auto-fit once.
+    var fitRetries = 0;
+    function fitWhenReady() {
+        if (list.offsetHeight > 0 || fitRetries++ > 30) {
+            fitSidebar();
+        } else {
+            requestAnimationFrame(fitWhenReady);
+        }
+    }
+    fitWhenReady();
 })();

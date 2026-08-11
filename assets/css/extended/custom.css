@@ -69,26 +69,29 @@
     grid-column: 1 / -1;
   }
 
-  /* The <details> wrapper owns the grid cell; the nav inside is sticky. */
+  /* The <details> wrapper is the sticky grid cell. Sticky must live on the
+     grid item itself: Chromium does not let position:sticky descendants of
+     <details> travel (the internal content box clips them), which is why the
+     nav-inside-sticky version scrolled away with the article. */
   .post-single:has(.toc-mobile) > .toc-mobile {
     grid-column: 1;
-    display: block;
-    margin: 0;
-  }
-
-  .post-single:has(.toc-mobile) > .toc-mobile > .toc {
     position: sticky;
     top: calc(var(--header-height) + 16px);
     max-height: calc(100vh - var(--header-height) - 32px);
     overflow-y: auto;
-    margin-bottom: 0;
+    margin: 0;
     /* Fallback scrolling stays wheel-accessible but never shows a bar;
        the JS auto-fit normally scales the list to fit the viewport. */
     scrollbar-width: none;
   }
 
-  .post-single:has(.toc-mobile) > .toc-mobile > .toc::-webkit-scrollbar {
+  .post-single:has(.toc-mobile) > .toc-mobile::-webkit-scrollbar {
     display: none;
+  }
+
+  .post-single:has(.toc-mobile) > .toc-mobile > .toc {
+    position: static;
+    margin-bottom: 0;
   }
 
   .post-single:has(.toc-mobile) > .toc-mobile > .toc-mobile__toggle {
