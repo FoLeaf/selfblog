@@ -30,3 +30,24 @@
 ### Status
 
 [OK] **Completed**
+
+
+## Session 2: PC端目录可读性修复
+
+**Date**: 2026-08-14
+**Task**: PC端目录可读性修复
+**Branch**: `master`
+
+### Summary
+
+重写 fitSidebar：把 --toc-scale 下限从 0.5 提到 0.85，列表超长时改用 max-height + overflow-y:auto 滚动（对齐移动端做法）。浏览器实测：长目录缩到 0.850 后滚动、短目录保持 1 不缩放、resize 双向切换正常、移动端折叠卡不回归。
+
+### Git Commits
+
+| Hash | Message |
+|------|---------|
+| `4dbed7b` | (see git log) |
+
+### Status
+
+[OK] **Completed**
