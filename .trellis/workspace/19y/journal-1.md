@@ -72,3 +72,24 @@
 ### Status
 
 [OK] **Completed**
+
+
+## Session 4: 主题切换圆形扩散动画
+
+**Date**: 2026-08-14
+**Task**: 主题切换圆形扩散动画
+**Branch**: `master`
+
+### Summary
+
+新增 View Transition 主题切换动画：layouts/partials/extend_footer.html 用 capture 阶段 + stopImmediatePropagation 接管 #theme-toggle，startViewTransition 包裹切换并从按钮坐标圆形 clip-path 扩散；custom.css 追加 ::view-transition-new/old(root) 动画。不支持 API 或 prefers-reduced-motion 时零侵入降级到主题原生 handler。浏览器验证：主路径动画+单次切换+坐标变量正确，降级路径原生 handler 单次切换无报错，未改 themes/PaperMod/。
+
+### Git Commits
+
+| Hash | Message |
+|------|---------|
+| `848ad4f` | (see git log) |
+
+### Status
+
+[OK] **Completed**
