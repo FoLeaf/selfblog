@@ -51,3 +51,24 @@
 ### Status
 
 [OK] **Completed**
+
+
+## Session 3: 修复目录刻度与滚动条回归
+
+**Date**: 2026-08-14
+**Task**: 修复目录刻度与滚动条回归
+**Branch**: `master`
+
+### Summary
+
+上轮给内层 .line-sidebar__list 加 overflow-y:auto 导致左侧 marker/刻度被裁切、滚动条可见。改为由外层 .toc-mobile wrapper 用 CSS 隐藏滚动条兜底滚动，内层 list 不再成为滚动容器。浏览器验证：刻度恢复、无滚动条、0.85 可读下限保留、resize 双向正常、移动端不回归。
+
+### Git Commits
+
+| Hash | Message |
+|------|---------|
+| `63e10e0` | (see git log) |
+
+### Status
+
+[OK] **Completed**
