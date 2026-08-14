@@ -52,7 +52,7 @@
     ) || 100;
 
     // Never shrink the TOC text below this fraction of its natural size;
-    // below this we scroll the list instead (mirrors the mobile behavior).
+    // below this the outer .toc-mobile wrapper scrolls the list instead.
     var MIN_TOC_SCALE = 0.85;
 
     var targets = items.map(function () { return 0; });
@@ -194,32 +194,25 @@
         var position = getComputedStyle(wrap || sidebar).position;
         if (position !== 'sticky') {
             sidebar.style.setProperty('--toc-scale', '1');
-            list.style.maxHeight = '';
-            list.style.overflowY = '';
             return;
         }
         var headerEl = document.querySelector('header.header') ||
             document.querySelector('.header');
         var headerOffset = (headerEl ? headerEl.offsetHeight : 60) + 32;
         var available = window.innerHeight - headerOffset;
-        // Restore the natural (unscaled) size and clear any previous scroll
-        // state before measuring, so max-height cannot clamp offsetHeight.
+        // Measure from the natural (unscaled) size first.
         sidebar.style.setProperty('--toc-scale', '1');
-        list.style.maxHeight = '';
-        list.style.overflowY = '';
         var height = list.offsetHeight;
         if (height <= available || available <= 0) {
             return;
         }
-        // Shrink only down to the readable floor; if the list still overflows
-        // at that minimum, fall back to scrolling it (mirrors mobile).
+        // Shrink only down to the readable floor. If the list still overflows
+        // at that minimum, the outer .toc-mobile wrapper scrolls it with a
+        // hidden scrollbar (see CSS), so we never scroll the inner list here:
+        // turning it into a scroll container would clip the left-positioned
+        // markers/ticks and expose a visible bar.
         var scale = Math.max(available / height, MIN_TOC_SCALE);
         sidebar.style.setProperty('--toc-scale', scale.toFixed(3));
-        var fitted = list.offsetHeight;
-        if (fitted > available) {
-            list.style.maxHeight = available + 'px';
-            list.style.overflowY = 'auto';
-        }
     }
 
     var resizeTimer = null;
