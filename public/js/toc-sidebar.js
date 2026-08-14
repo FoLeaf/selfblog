@@ -51,6 +51,10 @@
         getComputedStyle(sidebar).getPropertyValue('--smoothing')
     ) || 100;
 
+    // Never shrink the TOC text below this fraction of its natural size;
+    // below this we scroll the list instead (mirrors the mobile behavior).
+    var MIN_TOC_SCALE = 0.85;
+
     var targets = items.map(function () { return 0; });
     var current = items.map(function () { return 0; });
     var activeIndex = 0;
@@ -190,25 +194,31 @@
         var position = getComputedStyle(wrap || sidebar).position;
         if (position !== 'sticky') {
             sidebar.style.setProperty('--toc-scale', '1');
+            list.style.maxHeight = '';
+            list.style.overflowY = '';
             return;
         }
         var headerEl = document.querySelector('header.header') ||
             document.querySelector('.header');
         var headerOffset = (headerEl ? headerEl.offsetHeight : 60) + 32;
         var available = window.innerHeight - headerOffset;
-        // Measure from the natural (unscaled) size first.
+        // Restore the natural (unscaled) size and clear any previous scroll
+        // state before measuring, so max-height cannot clamp offsetHeight.
         sidebar.style.setProperty('--toc-scale', '1');
+        list.style.maxHeight = '';
+        list.style.overflowY = '';
         var height = list.offsetHeight;
         if (height <= available || available <= 0) {
             return;
         }
-        var scale = Math.max(available / height, 0.5);
+        // Shrink only down to the readable floor; if the list still overflows
+        // at that minimum, fall back to scrolling it (mirrors mobile).
+        var scale = Math.max(available / height, MIN_TOC_SCALE);
         sidebar.style.setProperty('--toc-scale', scale.toFixed(3));
-        // One more pass to correct the non-linear padding contribution.
         var fitted = list.offsetHeight;
         if (fitted > available) {
-            var scale2 = Math.max(scale * (available / fitted), 0.5);
-            sidebar.style.setProperty('--toc-scale', scale2.toFixed(3));
+            list.style.maxHeight = available + 'px';
+            list.style.overflowY = 'auto';
         }
     }
 
