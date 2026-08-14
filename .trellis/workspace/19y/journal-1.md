@@ -93,3 +93,24 @@
 ### Status
 
 [OK] **Completed**
+
+
+## Session 5: 顶栏冻结固定在页面顶部
+
+**Date**: 2026-08-14
+**Task**: 顶栏冻结固定在页面顶部
+**Branch**: `master`
+
+### Summary
+
+在 custom.css 追加 .header sticky 规则：position:sticky;top:0;z-index:100;background:var(--theme);border-bottom。浏览器确定性验证：滚动到底部(scrollY=1459) 后 headerTop=0、pos=sticky，背景随 var(--theme)。TOC scroll-spy 从 DOM 读 header.offsetHeight(60px) 冻结后不变，无需改 JS。未改 themes/PaperMod/。
+
+### Git Commits
+
+| Hash | Message |
+|------|---------|
+| `242ff76` | (see git log) |
+
+### Status
+
+[OK] **Completed**
