@@ -1,0 +1,46 @@
+{{/* 主题切换 View Transition（圆形扩散）。
+    设计要点：PaperMod 在 footer.html 用冒泡阶段 addEventListener 监听 #theme-toggle。
+    本脚本（被主题 footer 第 42 行调用）在其之前执行，故用「capture 阶段绑定 +
+    stopImmediatePropagation」完全接管按钮，避免一次点击被主题 handler 二次切换。
+    仅当浏览器支持 View Transition 且未开启 prefers-reduced-motion 时才接管；
+    否则不绑定，主题原生 handler 照常工作（无动画、零侵入降级）。 */}}
+<script>
+    function applyTheme(next) {
+        var html = document.documentElement;
+        html.dataset.theme = next;
+        localStorage.setItem("pref-theme", next);
+    }
+
+    function toggleTheme(e) {
+        var html = document.documentElement;
+        var next = html.dataset.theme === "dark" ? "light" : "dark";
+        // 从按钮点击坐标圆形扩散：把起点/半径传给 CSS 变量
+        var x = e.clientX, y = e.clientY;
+        var r = Math.hypot(
+            Math.max(x, window.innerWidth - x),
+            Math.max(y, window.innerHeight - y)
+        );
+        var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        if (document.startViewTransition && !reduceMotion) {
+            var t = document.startViewTransition(function () { applyTheme(next); });
+            t.ready.then(function () {
+                html.style.setProperty("--vt-x", x + "px");
+                html.style.setProperty("--vt-y", y + "px");
+                html.style.setProperty("--vt-r", r + "px");
+            });
+            e.stopImmediatePropagation(); // 阻止主题冒泡 handler 二次切换
+        }
+        // 否则：不接管、不阻止冒泡，走主题原生 handler（无动画降级）
+    }
+
+    // 延迟到所有内联脚本（含主题 handler）之后，再接管按钮
+    window.addEventListener("DOMContentLoaded", function () {
+        var btn = document.getElementById("theme-toggle");
+        if (!btn) return;
+        var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        if (document.startViewTransition && !reduceMotion) {
+            btn.addEventListener("click", toggleTheme, true); // capture，阻止主题 handler
+        }
+        // 不支持 View Transition 或开启 reduce-motion：不绑定，主题原生 handler 不动
+    });
+</script>
