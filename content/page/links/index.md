@@ -22,6 +22,14 @@ links:
     description: 好友的个人网站
     website: https://tak1na.cn/
     image: tak1na-icon.webp
+  - title: ff中文网
+    description: FatFs 中文资料站
+    website: https://ff.19y.cc/
+    image: ff-icon.png
+  - title: 个人探针
+    description: 个人服务器状态与性能探针
+    website: https://komari.19y.cc/
+    image: komari-icon.png
 ---
 
 常用链接。
