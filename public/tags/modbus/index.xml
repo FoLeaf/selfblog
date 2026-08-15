@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Modbus on 19y的技术栈</title><link>https://www.19y.cc/tags/modbus/</link><description>Recent content in Modbus on 19y的技术栈</description><generator>Hugo</generator><language>zh-cn</language><copyright>19y</copyright><lastBuildDate>Sat, 15 Aug 2026 21:45:00 +0800</lastBuildDate><atom:link href="https://www.19y.cc/tags/modbus/index.xml" rel="self" type="application/rss+xml"/><item><title>把 nanoMODBUS 接进 VelaGuard：从零到 RTU 主站跑通</title><link>https://www.19y.cc/p/velaguard-nanomodbus-integration/</link><pubDate>Sat, 15 Aug 2026 21:45:00 +0800</pubDate><guid>https://www.19y.cc/p/velaguard-nanomodbus-integration/</guid><description>&lt;h1 id="把-nanomodbus-接进-velaguard从零到-rtu-主站跑通"&gt;把 nanoMODBUS 接进 VelaGuard：从零到 RTU 主站跑通&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;面向初学者的垂直教程。目标：在 &lt;code&gt;app/velaguard&lt;/code&gt; 里接入
+&lt;a href="https://github.com/debevv/nanoMODBUS"&gt;nanoMODBUS&lt;/a&gt;（MIT，约 2000 行 C 的
+Modbus RTU/TCP 协议栈），用 &lt;code&gt;modbus_port_openvela.c&lt;/code&gt; 做串口适配层，再写一个
+&lt;code&gt;modbus_collector&lt;/code&gt;（NSH 命令 &lt;code&gt;vgmodbus&lt;/code&gt;）实现 Modbus RTU 主站，能周期读取
+一个从站的保持寄存器。&lt;/p&gt;</description></item></channel></rss>
